@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nicktackes.FlashCards">
+    <top>
+        <ButtonBar prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button fx:id="runButton" minWidth="0.0" mnemonicParsing="false" onAction="#printTimeline" prefHeight="25.0" prefWidth="100.0" text="Run" />
+                <ComboBox fx:id="timelineChoice" onMouseClicked="#setData" prefWidth="150.0" promptText="Select Timeline" />
+            </buttons>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </ButtonBar>
+    </top>
+    <center>
+        <VBox fx:id="flashCardPane" alignment="TOP_CENTER" spacing="10.0">
+            <TextField fx:id="titleBox" alignment="CENTER" editable="false" focusTraversable="false">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="150.0" right="150.0" top="20.0"/>
+                </VBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </TextField>
+            <TextField fx:id="dateBox" alignment="CENTER" editable="false" focusTraversable="false">
+                <VBox.margin>
+                    <Insets left="150.0" right="150.0"/>
+                </VBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </TextField>
+            <TextArea fx:id="descriptionBox" editable="false" focusTraversable="false">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="150.0" right="150.0" top="20.0"/>
+                </VBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+            </TextArea>
+            <Label fx:id="score" textFill="#eeeeee">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0"/>
+                </VBox.margin>
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Label>
+            <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                <VBox.margin>
+                    <Insets bottom="20.0"/>
+                </VBox.margin>
+                <Button fx:id="correct" mnemonicParsing="false" onAction="#rightAnswer" text="✔"
+                        textFill="#599556"/>
+                <Button fx:id="incorrect" mnemonicParsing="false" onAction="#wrongAnswer" text="✖"
+                        textFill="#a71c1c"/>
+            </HBox>
+        </VBox>
+    </center>
+   <bottom>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" text="© 2020 Nick Tackes" textFill="#eeeeee" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

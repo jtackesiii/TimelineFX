@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nicktackes.Timeline">
+   <bottom>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="600.0" text="© 2020 Nick Tackes" textFill="#eeeeee" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="runButton" minWidth="0.0" mnemonicParsing="false" onAction="#printTimeline" prefHeight="25.0" prefWidth="100.0" text="Run" />
+            <ComboBox fx:id="timelineChoice" onMouseClicked="#setData" prefWidth="150.0" promptText="Select Timeline" />
+        </buttons>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ButtonBar>
+   </top>
+   <left>
+       <ListView fx:id="dateListView" maxWidth="200.0" />
+   </left>
+   <center>
+      <VBox fx:id="timelinePane" alignment="CENTER_LEFT" spacing="10.0" />
+   </center>
+</BorderPane>

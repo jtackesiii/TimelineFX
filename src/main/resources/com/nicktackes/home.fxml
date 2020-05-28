@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nicktackes.HomeController">
+         <center>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                  prefHeight="300.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets/>
+               </opaqueInsets>
+               <Button fx:id="newTLButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                       onMouseClicked="#newTimeline" opacity="0.8" prefWidth="600.0" text="New Timeline">
+                  <VBox.margin>
+                     <Insets left="200.0" right="200.0"/>
+                  </VBox.margin>
+                  <opaqueInsets>
+                     <Insets/>
+                  </opaqueInsets>
+               </Button>
+               <Button fx:id="newEventButton" alignment="CENTER" layoutX="210.0" layoutY="138.0"
+                       maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#newEvent"
+                       opacity="0.8" prefWidth="600.0" text="New Event">
+                  <VBox.margin>
+                     <Insets left="200.0" right="200.0"/>
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="viewTLButton" alignment="CENTER" layoutX="10.0" layoutY="165.0"
+                       maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#viewTimeline"
+                       opacity="0.8" prefWidth="600.0" text="View Timeline">
+                  <VBox.margin>
+                     <Insets left="200.0" right="200.0"/>
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="flashCardButton" alignment="CENTER" layoutX="10.0" layoutY="192.0"
+                       maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#runFlashCards"
+                       opacity="0.8" prefWidth="600.0" text="Flash Cards">
+                  <VBox.margin>
+                     <Insets left="200.0" right="200.0"/>
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="exitButton" alignment="CENTER" layoutX="10.0" layoutY="219.0"
+                       maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#closeProgram"
+                       opacity="0.8" prefWidth="600.0" text="Exit">
+                  <VBox.margin>
+                     <Insets left="200.0" right="200.0"/>
+                  </VBox.margin>
+               </Button>
+            </VBox>
+         </center>
+         <bottom>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="© 2020 Nick Tackes" textFill="#495867" BorderPane.alignment="CENTER" />
+         </bottom>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</BorderPane>
