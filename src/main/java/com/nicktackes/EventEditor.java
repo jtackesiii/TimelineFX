@@ -36,10 +36,10 @@ public class EventEditor {
         tip.setShowDelay(Duration.seconds(0.5));
         startYear.setTooltip(tip);
         endYear.setTooltip(tip);
-        Tooltip descriptionTip = new Tooltip("No special characters or diacritics, sorry!");
-        descriptionTip.setShowDelay(Duration.seconds(0.5));
-        eventDescription.setTooltip(descriptionTip);
-        eventName.setTooltip(descriptionTip);
+//        Tooltip descriptionTip = new Tooltip("No special characters or diacritics, sorry!");
+//        descriptionTip.setShowDelay(Duration.seconds(0.5));
+//        eventDescription.setTooltip(descriptionTip);
+//        eventName.setTooltip(descriptionTip);
     }
 
     public String[] timelineList = Utilities.timelinePath.list();

@@ -282,11 +282,11 @@ public class Timeline {
                         lastDatePrompt.setVisible(true);
                         lastDatePrompt.setText("Add end Date?");
                     }
-                    Tooltip descriptionTip = new Tooltip("No special characters or diacritics, sorry!");
-                    descriptionTip.setShowDelay(Duration.seconds(0.5));
+//                    Tooltip descriptionTip = new Tooltip("No special characters or diacritics, sorry!");
+//                    descriptionTip.setShowDelay(Duration.seconds(0.5));
                     description.setEditable(true);
-                    description.setTooltip(descriptionTip);
-                    title.setTooltip(descriptionTip);
+//                    description.setTooltip(descriptionTip);
+//                    title.setTooltip(descriptionTip);
                     editButton.setText("Update");
                     editButton.removeEventHandler(MouseEvent.MOUSE_CLICKED, this);
                     editButton.addEventHandler(MouseEvent.MOUSE_CLICKED, updateEvent);

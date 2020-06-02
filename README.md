@@ -8,6 +8,5 @@ If you use a Windows machine, free to try it out by downloading [target/Timeline
 
 ToDo:
 
-1. Enable Unicode text
-2. Enable embedded images
-3. Cross-platform deploy
+1. Enable embedded images
+2. Cross-platform deploy
