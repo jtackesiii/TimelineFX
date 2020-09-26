@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import java.io.*;
-import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class Timeline {
     @FXML
     private ListView<String> dateListView;
 
-    private String[] timelineList = Utilities.timelinePath.list();
+    private final String[] timelineList = Utilities.timelinePath.list();
 
     @FXML
     private void setData() {
@@ -56,7 +55,7 @@ public class Timeline {
         scanner.close();
 
         scanner = new Scanner(new BufferedReader(new FileReader(Utilities.timelinePath + "/" + timelineChoice.getValue() + ".txt")));
-        int col = 4;
+        int col = 5;
 
         String[][] activeTimeline = new String[row][col];
         int i = 0;
@@ -69,34 +68,39 @@ public class Timeline {
         scanner.close();
 
         //Sort data by date
+        DateTimeFormatter parseDates = DateTimeFormatter.ofPattern("u-M-d");
+
         Arrays.sort(activeTimeline, (entry1, entry2) -> {
-            final String time1 = entry1[1];
-            final String time2 = entry2[1];
+            final LocalDate time1 = LocalDate.parse(entry1[1], parseDates);
+            final LocalDate time2 = LocalDate.parse(entry2[1], parseDates);
             return time1.compareTo(time2);
         });
 
         //Event Class
         TimelineEvent[] event = new TimelineEvent[row];
-        DateTimeFormatter parseDates = DateTimeFormatter.ofPattern("u-M-d");
         DateTimeFormatter noEra = DateTimeFormatter.ofPattern("y - MMMM d");
         DateTimeFormatter withEra = DateTimeFormatter.ofPattern("y GG - MMMM d");
+        DateTimeFormatter yearNoEra = DateTimeFormatter.ofPattern("y");
+        DateTimeFormatter yearWithEra = DateTimeFormatter.ofPattern("y GG");
         for (i = 0; i < row; i++) {
             String eventTitle = activeTimeline[i][0];
             LocalDate startDate = LocalDate.parse(activeTimeline[i][1], parseDates);
             LocalDate endDate = LocalDate.parse(activeTimeline[i][2], parseDates);
             String eventDescription = activeTimeline[i][3].replace("##", "\n");
+            Boolean isYearOnly = Boolean.parseBoolean(activeTimeline[i][4]);
 
-            event[i] = new TimelineEvent(eventTitle, startDate, endDate, eventDescription);
-            if (dateListView.getItems().contains(event[i].getStartDate().format(noEra))) {
-                dateListView.getItems().add("... " + event[i].getTitle());
-            } else if (dateListView.getItems().contains(event[i].getStartDate().format(withEra))) {
-                dateListView.getItems().add("... " + event[i].getTitle());
+            event[i] = new TimelineEvent(eventTitle, startDate, endDate, eventDescription, isYearOnly);
+            if (event[i].getIsYearOnly() && event[i].getStartDate().getYear() < 1000) {
+                dateListView.getItems().add(event[i].getStartDate().format(yearWithEra));
+            } else if (event[i].getIsYearOnly()) {
+                dateListView.getItems().add(event[i].getStartDate().format(yearNoEra));
             } else if (event[i].getStartDate().getYear() < 1000) {
                 dateListView.getItems().add(event[i].getStartDate().format(withEra));
             } else {
                 dateListView.getItems().add(event[i].getStartDate().format(noEra));
             }
         }
+
 
         //ListView on-click functionality
         DateTimeFormatter tileCE = DateTimeFormatter.ofPattern("MMMM d, y");
@@ -123,19 +127,30 @@ public class Timeline {
             HBox dates = new HBox(10);
             TextField firstDate = new TextField();
             TextField lastDate = new TextField();
-            if (event[selectedItem].getStartDate().getYear() < 1000){
+            if (event[selectedItem].getStartDate().getYear() < 1000 && event[selectedItem].getIsYearOnly()) {
+                firstDate.setText(event[selectedItem].getStartDate().format(yearWithEra));
+            } else if (event[selectedItem].getStartDate().getYear() < 1000) {
                 firstDate.setText(event[selectedItem].getStartDate().format(tileBCE));
+            } else if (event[selectedItem].getIsYearOnly()) {
+                firstDate.setText(event[selectedItem].getStartDate().format(yearNoEra));
             } else {
                 firstDate.setText(event[selectedItem].getStartDate().format(tileCE));
             }
-            if (event[selectedItem].getEndDate().getYear() < 1000){
+            if (event[selectedItem].getEndDate().getYear() < 1000 && event[selectedItem].getIsYearOnly()) {
+                lastDate.setText(event[selectedItem].getEndDate().format(yearWithEra));
+            } else if (event[selectedItem].getEndDate().getYear() < 1000) {
                 lastDate.setText(event[selectedItem].getEndDate().format(tileBCE));
+            } else if (event[selectedItem].getIsYearOnly()) {
+                firstDate.setText(event[selectedItem].getStartDate().format(yearNoEra));
             } else {
                 lastDate.setText(event[selectedItem].getEndDate().format(tileCE));
             }
             Label lastDatePrompt = new Label();
             lastDatePrompt.getStyleClass().add("edit-button");
             lastDatePrompt.setVisible(false);
+            CheckBox yearOnlyCheck = new CheckBox("Display year only");
+            yearOnlyCheck.setStyle("-fx-wrap-text: true;");
+            yearOnlyCheck.setVisible(false);
             dates.getChildren().addAll(firstDate, lastDatePrompt, lastDate);
             TextArea description = new TextArea(event[selectedItem].getDescription());
             title.setEditable(false);
@@ -155,7 +170,7 @@ public class Timeline {
                     // All the important information
                     String inputFileName = Utilities.timelinePath + "/" + timelineChoice.getValue() + ".txt";
                     String outputFileName = Utilities.timelinePath + "/StringReplacer.txt";
-                    String lineToRemove = activeTimeline[selectedItem][0] + "%%" + activeTimeline[selectedItem][1] + "%%" + activeTimeline[selectedItem][2] + "%%" + activeTimeline[selectedItem][3];;
+                    String lineToRemove = activeTimeline[selectedItem][0] + "%%" + activeTimeline[selectedItem][1] + "%%" + activeTimeline[selectedItem][2] + "%%" + activeTimeline[selectedItem][3] + "%%" + activeTimeline[selectedItem][4];;
                     // The traps any possible read/write exceptions which might occur
                     try {
                         File inputFile = new File(inputFileName);
@@ -215,10 +230,10 @@ public class Timeline {
                 public void handle(MouseEvent event){
 
                     String modDescription = description.getText().replace("\n", "##");
-                    String oldString = activeTimeline[selectedItem][0] + "%%" + activeTimeline[selectedItem][1] + "%%" + activeTimeline[selectedItem][2] + "%%" + activeTimeline[selectedItem][3];
-                    String newString = title.getText() + "%%" + firstDate.getText() + "%%" + lastDate.getText() + "%%" + modDescription;
+                    String oldString = activeTimeline[selectedItem][0] + "%%" + activeTimeline[selectedItem][1] + "%%" + activeTimeline[selectedItem][2] + "%%" + activeTimeline[selectedItem][3] + "%%" + activeTimeline[selectedItem][4];
+                    String newString = title.getText() + "%%" + firstDate.getText() + "%%" + lastDate.getText() + "%%" + modDescription + "%%" + yearOnlyCheck.isSelected();
                     if(lastDate.getText().isBlank()){
-                        newString = title.getText() + "%%" + firstDate.getText() + "%%" + firstDate.getText() + "%%" + modDescription;
+                        newString = title.getText() + "%%" + firstDate.getText() + "%%" + firstDate.getText() + "%%" + modDescription + "%%" + yearOnlyCheck.isSelected();
                     }
                     StringBuilder oldContent = new StringBuilder();
 
@@ -259,6 +274,7 @@ public class Timeline {
                         firstDate.setEditable(false);
                         lastDate.setEditable(false);
                         lastDatePrompt.setVisible(false);
+                        yearOnlyCheck.setVisible(false);
                         description.setEditable(false);
                         editButton.setText("Please restart timeline to view changes.");
                         editButton.setTextFill(Paint.valueOf("#fe5f55"));
@@ -282,6 +298,7 @@ public class Timeline {
                         lastDatePrompt.setVisible(true);
                         lastDatePrompt.setText("Add end Date?");
                     }
+                    yearOnlyCheck.setVisible(true);
 //                    Tooltip descriptionTip = new Tooltip("No special characters or diacritics, sorry!");
 //                    descriptionTip.setShowDelay(Duration.seconds(0.5));
                     description.setEditable(true);
@@ -305,7 +322,7 @@ public class Timeline {
 
 
             //Print Tiles to Screen
-            tile.getChildren().addAll(editor, title, separator1, dates, separator2, description);
+            tile.getChildren().addAll(editor, title, separator1, dates, separator2, yearOnlyCheck, description);
             tile.getStyleClass().add("tile");
             sp.getStyleClass().add("tile-container");
             sp.fitToHeightProperty().set(true);

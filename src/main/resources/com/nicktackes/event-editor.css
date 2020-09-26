@@ -97,6 +97,19 @@
     -fx-text-fill: #495867;
 }
 
+.check-box {
+    -fx-text-fill: #f7f7ff;
+}
+
+.check-box *.box {
+    -fx-background-color: #495867;
+    -fx-background-insets: 0;
+    -fx-border-width: 1;
+    -fx-border-color: #f7f7ff;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
 .label {
     -fx-text-fill: #f7f7ff;
 }

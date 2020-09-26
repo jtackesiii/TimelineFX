@@ -7,77 +7,63 @@
 
 <BorderPane fx:id="backsplash" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nicktackes.EventEditor">
              <center>
-                 <GridPane fx:id="eventPane" prefHeight="300.0" prefWidth="450.0"
-                           style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
+                 <GridPane fx:id="eventPane" prefHeight="300.0" prefWidth="450.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" BorderPane.alignment="CENTER">
                      <columnConstraints>
-                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                         <RowConstraints/>
-                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="59.66666475931804"
-                                         vgrow="SOMETIMES"/>
-                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="59.66666475931804"
-                                         vgrow="SOMETIMES"/>
-                         <RowConstraints maxHeight="144.0" minHeight="0.0" prefHeight="56.00000762939454"
-                                         vgrow="SOMETIMES"/>
-                         <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="56.00000762939454"
-                                         vgrow="SOMETIMES"/>
-                         <RowConstraints maxHeight="306.3333333333333" minHeight="10.0" prefHeight="218.66666666666669"
-                                         vgrow="SOMETIMES"/>
-                         <RowConstraints maxHeight="227.00000762939453" minHeight="10.0" prefHeight="57.333333333333314"
-                                         vgrow="SOMETIMES"/>
+                         <RowConstraints />
+                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="59.66666475931804" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="59.66666475931804" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="144.0" minHeight="0.0" prefHeight="56.00000762939454" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="56.00000762939454" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="56.00000762939454" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="306.3333333333333" minHeight="10.0" prefHeight="218.66666666666669" vgrow="SOMETIMES" />
+                         <RowConstraints maxHeight="227.00000762939453" minHeight="10.0" prefHeight="57.333333333333314" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <BorderPane.margin>
-                         <Insets bottom="25.0" left="50.0" right="50.0" top="25.0"/>
+                         <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
                      </BorderPane.margin>
-                     <ComboBox fx:id="timelineChoice" onMouseClicked="#setData" prefHeight="25.0" prefWidth="400.0"
-                               promptText="Choose Timeline" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <ComboBox fx:id="timelineChoice" onMouseClicked="#setData" prefHeight="25.0" prefWidth="400.0" promptText="Choose Timeline" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                          <GridPane.margin>
-                             <Insets left="50.0" right="50.0"/>
+                             <Insets left="50.0" right="50.0" />
                          </GridPane.margin>
                      </ComboBox>
-                     <TextField fx:id="eventName" alignment="CENTER" prefHeight="25.0" prefWidth="150.0"
-                                promptText="Event Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <TextField fx:id="eventName" alignment="CENTER" prefHeight="25.0" prefWidth="150.0" promptText="Event Name" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                          <GridPane.margin>
-                             <Insets left="50.0" right="50.0"/>
+                             <Insets left="50.0" right="50.0" />
                          </GridPane.margin>
                      </TextField>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 20;"
-                           GridPane.rowIndex="3">
-                         <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="115.0"
-                                text="Start Date (required):"/>
-                         <TextField fx:id="startYear" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
-                                    promptText="yyyy"/>
-                         <TextField fx:id="startMonth" alignment="CENTER" prefHeight="25.0" prefWidth="45.0"
-                                    promptText="mm"/>
-                         <TextField fx:id="startDay" alignment="CENTER" prefHeight="25.0" prefWidth="35.0"
-                                    promptText="dd"/>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 20;" GridPane.rowIndex="3">
+                         <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="115.0" text="Start Date (required):" />
+                         <TextField fx:id="startYear" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" promptText="yyyy" />
+                         <TextField fx:id="startMonth" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" promptText="mm" />
+                         <TextField fx:id="startDay" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" promptText="dd" />
                      </HBox>
-                     <TextArea fx:id="eventDescription" prefHeight="170.0" prefWidth="397.0"
-                               promptText="Event Description" GridPane.rowIndex="5">
+                     <TextArea fx:id="eventDescription" prefHeight="170.0" prefWidth="397.0" promptText="Event Description" GridPane.rowIndex="6">
                          <GridPane.margin>
-                             <Insets bottom="15.0" left="50.0" right="50.0" top="15.0"/>
+                             <Insets bottom="15.0" left="50.0" right="50.0" top="15.0" />
                          </GridPane.margin>
                      </TextArea>
-                     <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#onClick" text="Save"
-                             GridPane.halignment="CENTER" GridPane.rowIndex="6"/>
+                     <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#onClick" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                      <Label fx:id="alertLabel" text="Event Created!" visible="false" GridPane.halignment="CENTER">
                          <font>
-                             <Font size="14.0"/>
+                             <Font size="14.0" />
                          </font>
                      </Label>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="4">
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="443.0" spacing="20.0" GridPane.rowIndex="4">
                          <children>
-                             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="115.0"
-                                    text="End Date (optional):"/>
-                             <TextField fx:id="endYear" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
-                                        promptText="yyyy"/>
-                             <TextField fx:id="endMonth" alignment="CENTER" prefHeight="25.0" prefWidth="45.0"
-                                        promptText="mm"/>
-                             <TextField fx:id="endDay" alignment="CENTER" prefHeight="25.0" prefWidth="35.0"
-                                        promptText="dd"/>
+                             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="115.0" text="End Date (optional):" />
+                             <TextField fx:id="endYear" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" promptText="yyyy" />
+                             <TextField fx:id="endMonth" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" promptText="mm" />
+                             <TextField fx:id="endDay" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" promptText="dd" />
                          </children>
                      </HBox>
+         <CheckBox fx:id="yearOnlySelect" mnemonicParsing="false" text="Display year only" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
+         </CheckBox>
                  </GridPane>
          </center>
          <bottom>

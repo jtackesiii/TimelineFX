@@ -117,8 +117,9 @@ public class FlashCards {
             LocalDate startDate = LocalDate.parse(activeTimeline[i][1], parseDates);
             LocalDate endDate = LocalDate.parse(activeTimeline[i][2], parseDates);
             String modDescription = activeTimeline[i][3].replace("##", "\n");
+            Boolean isYearOnly = Boolean.parseBoolean(activeTimeline[i][4]);
 
-            event[i] = new TimelineEvent(eventTitle, startDate, endDate, modDescription);
+            event[i] = new TimelineEvent(eventTitle, startDate, endDate, modDescription, isYearOnly);
             questionList.add(event[i]);
         }
 
@@ -245,19 +246,25 @@ public class FlashCards {
         titleBox.setText(questionList.get(questionIndex).title);
         if(questionList.get(questionIndex).startDate.getYear() < 1000) {
             if (questionList.get(questionIndex).hasRange()) {
-                if (questionList.get(questionIndex).sameMonth()) {
+                if (questionList.get(questionIndex).isYearOnly) {
+                    dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("y GG")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("y GG")));
+                }else if (questionList.get(questionIndex).sameMonth()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("d, y GG")));
                 } else if (questionList.get(questionIndex).sameYear()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + " - " + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("MMMM d, y GG")));
                 } else {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d, y GG")) + " - " + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("MMMM d, y GG")));
                 }
+            } else if (questionList.get(questionIndex).isYearOnly) {
+                dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("y GG")));
             } else {
                 dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d, y GG")));
             }
         } else {
             if (questionList.get(questionIndex).hasRange()) {
-                if (questionList.get(questionIndex).sameMonth()) {
+                if (questionList.get(questionIndex).isYearOnly) {
+                    dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("y")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("y")));
+                } if (questionList.get(questionIndex).sameMonth()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("d, y")));
                 } else if (questionList.get(questionIndex).sameYear()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + " - " + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("MMMM d, y")));

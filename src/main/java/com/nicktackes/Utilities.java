@@ -26,13 +26,13 @@ public class Utilities {
                     new FileWriter(mozFile, true)
             );
 
-            writer.write("Independence Day%%1776-07-04%%1776-07-04%%The United States of America was freed from British Rule.");
+            writer.write("Independence Day%%1776-07-04%%1776-07-04%%The United States of America was freed from British Rule.%%false");
             writer.newLine();
 
-            writer.write("The Emancipation Proclamation%%1863-01-01%%1863-01-01%%Abraham Lincoln nominally abolished slavery in the United States of America.");
+            writer.write("The Emancipation Proclamation%%1863-01-01%%1863-01-01%%Abraham Lincoln nominally abolished slavery in the United States of America.%%false");
             writer.newLine();
 
-            writer.write("Barack Obama's Presidency%%2009-01-20%%2017-01-20%%Barack Hussein Obama served as the 44th president of the United States of America.");
+            writer.write("Barack Obama's Presidency%%2009-01-20%%2017-01-20%%Barack Hussein Obama served as the 44th president of the United States of America.%%false");
             writer.newLine();
 
             writer.close();

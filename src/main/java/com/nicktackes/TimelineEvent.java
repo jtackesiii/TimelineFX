@@ -7,12 +7,14 @@ public class TimelineEvent {
     LocalDate startDate;
     LocalDate endDate;
     String description;
+    Boolean isYearOnly;
 
-    public TimelineEvent(String title, LocalDate startDate, LocalDate endDate, String description) {
+    public TimelineEvent(String title, LocalDate startDate, LocalDate endDate, String description, Boolean isYearOnly) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
+        this.isYearOnly = isYearOnly;
     }
 
     public boolean hasRange() {
@@ -43,6 +45,8 @@ public class TimelineEvent {
         this.description = description;
     }
 
+    public void setIsYearOnly(Boolean isYearOnly) { this.isYearOnly = isYearOnly; }
+
     public String getTitle() {
         return this.title;
     }
@@ -58,4 +62,6 @@ public class TimelineEvent {
     public String getDescription() {
         return this.description;
     }
+
+    public Boolean getIsYearOnly() { return this.isYearOnly; }
 }

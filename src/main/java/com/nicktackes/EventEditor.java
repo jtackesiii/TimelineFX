@@ -11,6 +11,8 @@ import java.io.IOException;
 public class EventEditor {
 
     @FXML
+    private CheckBox yearOnlySelect;
+    @FXML
     private Label alertLabel;
     @FXML
     private ComboBox<String> timelineChoice = null;
@@ -108,10 +110,14 @@ public class EventEditor {
                     new FileWriter(Utilities.timelinePath + "/" + timelineChoice.getValue() + ".txt", true)  //Set true for append mode
             );
 
-            if (endDateIsEmpty()) {
-                writer.write(eventName.getText() + "%%" + startDate + "%%" + startDate + "%%" + eventDescription.getText());
+            if (endDateIsEmpty() && yearOnlySelect.isSelected()) {
+                writer.write(eventName.getText() + "%%" + startDate + "%%" + startDate + "%%" + eventDescription.getText() + "%%" + "true");
+            } else if (endDateIsEmpty()) {
+                writer.write(eventName.getText() + "%%" + startDate + "%%" + startDate + "%%" + eventDescription.getText() + "%%" + "false");
+            } else if (yearOnlySelect.isSelected()) {
+                writer.write(eventName.getText() + "%%" + startDate + "%%" + endDate + "%%" + eventDescription.getText() + "%%" + "true");
             } else {
-                writer.write(eventName.getText() + "%%" + startDate + "%%" + endDate + "%%" + eventDescription.getText());
+                writer.write(eventName.getText() + "%%" + startDate + "%%" + endDate + "%%" + eventDescription.getText() + "%%" + "false");
             }
             writer.newLine();
             writer.close();
@@ -126,6 +132,7 @@ public class EventEditor {
             endMonth.clear();
             endDay.clear();
             eventDescription.clear();
+            yearOnlySelect.setSelected(false);
 
             // Success Label
 
