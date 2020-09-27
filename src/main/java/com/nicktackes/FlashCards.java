@@ -264,13 +264,16 @@ public class FlashCards {
             if (questionList.get(questionIndex).hasRange()) {
                 if (questionList.get(questionIndex).isYearOnly) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("y")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("y")));
-                } if (questionList.get(questionIndex).sameMonth()) {
+                }
+                if (questionList.get(questionIndex).sameMonth()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + "-" + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("d, y")));
                 } else if (questionList.get(questionIndex).sameYear()) {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d")) + " - " + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("MMMM d, y")));
                 } else {
                     dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d, y")) + " - " + questionList.get(questionIndex).endDate.format(DateTimeFormatter.ofPattern("MMMM d, y")));
                 }
+            } else if (questionList.get(questionIndex).isYearOnly) {
+                dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("y")));
             } else {
                 dateBox.setText(questionList.get(questionIndex).startDate.format(DateTimeFormatter.ofPattern("MMMM d, y")));
             }

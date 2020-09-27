@@ -6,7 +6,19 @@ TimelineFX is a timeline creation and study tool. Create, view, and edit timelin
 
 If you use a Windows machine, free to try it out by downloading [target/TimelineFX.zip](/target/TimelineFX.zip).
 
-ToDo:
+## Using the included logo
+
+To use the logo, navigate to /bin/ >> TimelineFX.bat
+
+Right-click, and "create shortcut".
+
+Right-click the shortcut, and click "properties" >> "change icon"
+
+Navigate to /bin/logo.ico and select.
+
+Done!
+
+## Still in development:
 
 1. Enable embedded images
 2. Cross-platform deploy
