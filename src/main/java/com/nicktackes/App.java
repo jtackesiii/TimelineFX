@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +22,10 @@ public class App extends Application {
         scene = new Scene(loadFXML("home"));
         scene.getStylesheets().add(String.valueOf(App.class.getResource( "home.css")));
         stage.setTitle("TimelineFX");
+
+        Image image = new Image(String.valueOf(App.class.getResource("logo.png")));
+        stage.getIcons().add(image);
+
         stage.setScene(scene);
         stage.show();
     }

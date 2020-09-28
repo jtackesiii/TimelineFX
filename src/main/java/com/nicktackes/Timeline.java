@@ -151,6 +151,9 @@ public class Timeline {
             CheckBox yearOnlyCheck = new CheckBox("Display year only");
             yearOnlyCheck.setStyle("-fx-wrap-text: true;");
             yearOnlyCheck.setVisible(false);
+            if (event[selectedItem].getIsYearOnly()) {
+                yearOnlyCheck.setSelected(true);
+            };
             dates.getChildren().addAll(firstDate, lastDatePrompt, lastDate);
             TextArea description = new TextArea(event[selectedItem].getDescription());
             title.setEditable(false);
